@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aagrivan <aagrivan@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rstarfir <rstarfir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/14 13:07:48 by aagrivan          #+#    #+#             */
-/*   Updated: 2019/10/15 14:18:21 by aagrivan         ###   ########.fr       */
+/*   Updated: 2019/10/17 19:43:42 by rstarfir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,20 +14,22 @@
 
 int         main(int ac, char **av)
 {
-    int     fd;
-    int     i;
-    char    *line;
+	int		fd;
+    char	*line;
 
-	i = 0;
-	if (ac < 2)
-		write(2, "File name missing.\n", 19);
-	else if (ac == 2)
+	fd = 0;
+	line = "sting";
+	if (ac != 2)
+		ft_putendl("usage: write fillit <name file>");
+	else
 	{
-		fd = open(av[i], O_RDONLY);
-		ft_valid(&line, fd);
+		if ((fd = open(av[1], O_RDONLY)) < 0)
+			return (-1);
+		ft_valid(line, fd); //free tetramin 
+		//save - tetramin - t_list?
+		//make map
+		//solve map
 		close(fd);
 	}
-	else
-        write(2, "Error0\n", 7);
 	return (0);
 }
