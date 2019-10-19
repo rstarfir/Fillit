@@ -6,7 +6,7 @@
 /*   By: rstarfir <rstarfir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/14 13:09:15 by aagrivan          #+#    #+#             */
-/*   Updated: 2019/10/18 16:17:02 by rstarfir         ###   ########.fr       */
+/*   Updated: 2019/10/19 18:51:23 by rstarfir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 # include <stdio.h>
 
 # define BUF_SSIZE 21
+
 typedef struct              s_tetramino
 {
     char                    letter;
