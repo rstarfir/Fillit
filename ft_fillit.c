@@ -6,7 +6,7 @@
 /*   By: rstarfir <rstarfir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/14 18:59:35 by aagrivan          #+#    #+#             */
-/*   Updated: 2019/10/17 22:15:26 by rstarfir         ###   ########.fr       */
+/*   Updated: 2019/10/18 16:46:52 by rstarfir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ int			ft_check_form(char *str)
 //		printf("All good check_form - %i.\n", i);
 		i++;
 	}
-	return (-1);
+	return (1);
 }
 
 int			ft_check_full(char *str)
@@ -51,8 +51,14 @@ int			ft_check_full(char *str)
 	{
 		while (str[i])
 		{
-			if (str[i] == '.' || str[i] == '#' || str[i % 5] == '\n')
+			if (str[i] % 21 == '\n' || str[i] % 5 == '\n')
+				i = '\v';
+			if (str[i] == '.' || str[i] == '#' || str[i] == '\v')
 				count++;
+			else
+				return (-1);
+			if (count == 21 && str[i] == '\0')
+				return (1);
 			i++;
 		}
 		return (1);
