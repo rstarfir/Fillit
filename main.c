@@ -6,7 +6,7 @@
 /*   By: rstarfir <rstarfir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/14 13:07:48 by aagrivan          #+#    #+#             */
-/*   Updated: 2019/10/23 17:54:57 by rstarfir         ###   ########.fr       */
+/*   Updated: 2019/10/24 19:20:53 by rstarfir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ void		ft_error(void)
 int         main(int ac, char **av)
 {
 	int		fd;
+	t_tetra	*tmp;
 
 	fd = 0;
 	if (ac != 2)
@@ -29,11 +30,12 @@ int         main(int ac, char **av)
 	{
 		if ((fd = open(av[1], O_RDONLY)) < 0)
 			ft_error();
-		ft_valid(fd); //free tetramin 
+		tmp = ft_valid(fd);
+		close(fd);
+		ft_map(tmp);
 		//save - tetramin - t_list?
 		//make map
 		//solve map
-		close(fd);
 	}
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: rstarfir <rstarfir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/14 13:09:15 by aagrivan          #+#    #+#             */
-/*   Updated: 2019/10/23 18:14:10 by rstarfir         ###   ########.fr       */
+/*   Updated: 2019/10/24 19:13:47 by rstarfir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,10 +27,13 @@ typedef struct				s_tetra
 	struct s_tetra			*prev;
 }							t_tetra;
 
-int		ft_valid(const int fd);
+t_tetra	*ft_valid(const int fd);
 int		ft_check_full(char *str);
 int		ft_check_form(char *str);
 void	ft_error(void);
 t_tetra	*ft_tetra(char *buffer, char c);
+t_tetra	*ft_addtetr(t_tetra *tmp, char *buffer, char c);
+void	min_max(int *src);
+int		ft_map(t_tetra *tmp);
 
 #endif
