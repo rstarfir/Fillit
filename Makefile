@@ -6,14 +6,14 @@
 #    By: rstarfir <rstarfir@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/10/23 14:37:43 by rstarfir          #+#    #+#              #
-#    Updated: 2019/10/23 14:38:12 by rstarfir         ###   ########.fr        #
+#    Updated: 2019/10/24 19:14:15 by rstarfir         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 .PHONY = all clean fclean re
 NAME = fillit
 FLAGS = -Wall -Wextra -Werror
-FILES = ft_valid.c main.c ft_tetra.c
+FILES = ft_valid.c main.c ft_tetra.c ft_fillit.c
 LIBFT = libft/*.c
 LIBFT2 = libft/
 HEADER = ft_fillit.h 
