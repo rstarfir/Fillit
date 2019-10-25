@@ -6,7 +6,7 @@
 /*   By: rstarfir <rstarfir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/14 13:07:48 by aagrivan          #+#    #+#             */
-/*   Updated: 2019/10/24 19:20:53 by rstarfir         ###   ########.fr       */
+/*   Updated: 2019/10/25 19:45:40 by rstarfir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,10 @@ int         main(int ac, char **av)
 {
 	int		fd;
 	t_tetra	*tmp;
+	int		size;
 
 	fd = 0;
+	size = 0;
 	if (ac != 2)
 		ft_putendl("usage: fillit <name file>");
 	else
@@ -32,7 +34,8 @@ int         main(int ac, char **av)
 			ft_error();
 		tmp = ft_valid(fd);
 		close(fd);
-		ft_map(tmp);
+		size = ft_min_map(tmp);
+		ft_mapsize(tmp, size);
 		//save - tetramin - t_list?
 		//make map
 		//solve map

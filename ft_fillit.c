@@ -5,50 +5,44 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: rstarfir <rstarfir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/10/24 18:03:44 by rstarfir          #+#    #+#             */
-/*   Updated: 2019/10/24 22:36:54 by rstarfir         ###   ########.fr       */
+/*   Created: 2019/10/25 16:52:27 by rstarfir          #+#    #+#             */
+/*   Updated: 2019/10/25 20:53:20 by rstarfir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_fillit.h"
 
-int			ft_mapsize(int *count)
+void		fillit(char **map, t_tetra *tmp, int size)
 {
-	if (count == 1)
-		return (2);
-	if (count == 2)
-		return (3);
-	if (count == 3 || count == 4)
-		return (4);
-	if (count == 5 || count == 6)
-		return (5);
-	if (count == 7 || count == 8);
-		return (6);
-	if (count == 9 || count == 10)
-		return (7);
-	if (count >= 11 && count <= 16)
-		return (8);
-	if (count >= 17 && count <= 20)
-		return (9);
-	if (count >= 21 && count <= 25) 
-		return (10);
-	if (count == 26)
-		return (11);	
-	//printf("%i\n", count);
-	//create_map();
-	return (0);
-}
+	int			max_x;
+	int			max_y;
+	int			i;
+	int			j;
 
-int			ft_count(t_tetra *tmp)
-{
-	int		count;
-
-	count = 0;
-	while (tmp)
+	i = 2;
+	max_x = src[0];
+	max_y = src[1];
+	while (i < 8)
 	{
-		tmp = tmp->next;
-		count++;
+		max_x = (src[i] > max_x) ? src[i] : max_x;
+		max_y = (src[i + 1] < max_y) ? src[i + 1] : max_y;
+		i += 2;
 	}
-	ft_mapsize(count)
-	return (tmp);
+	j = 0;
+	while (j < 8)
+	{
+		map[tmp->tmino[j + 1]][tmp->tmino[j]] = tmp->alpha;
+
+		if (max_x > (size - 1))
+		{
+			size += 1;
+			ft_mapsize(tmp, size);
+		}
+		if (max_y > (size - 1))
+		{
+			size += 1;
+			ft_mapsize(tmp, size);
+		}
+		j += 2;
+	}
 }

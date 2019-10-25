@@ -6,13 +6,13 @@
 /*   By: rstarfir <rstarfir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/23 14:10:20 by rstarfir          #+#    #+#             */
-/*   Updated: 2019/10/24 19:52:43 by rstarfir         ###   ########.fr       */
+/*   Updated: 2019/10/25 17:05:39 by rstarfir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_fillit.h"
 
-void			min_max(int *src)
+void			min_xy(int *src)
 {
 	int			min_x;
 	int			min_y;
@@ -53,7 +53,7 @@ void			ft_params(char *buffer, int *src)
 			src[j + 1] = i / 5; // y
 			j += 2;
 		}
-	min_max(src);
+	min_xy(src);
 	/*i = 0;
 	while (i < 8)
 	{
