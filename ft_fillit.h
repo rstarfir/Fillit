@@ -6,7 +6,7 @@
 /*   By: rstarfir <rstarfir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/14 13:09:15 by aagrivan          #+#    #+#             */
-/*   Updated: 2019/10/25 19:45:06 by rstarfir         ###   ########.fr       */
+/*   Updated: 2019/10/26 19:12:12 by rstarfir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,6 @@ void	min_xy(int *src);
 char	**ft_mapsize(t_tetra *tmp, int size);
 int		ft_min_map(t_tetra *tmp);
 void	display_map(char **map, int size);
-void	fillit(char **map, t_tetra *tmp, int size);
+void	fillit(char **map, t_tetra *tmp, int size, int min_xy);
 
 #endif

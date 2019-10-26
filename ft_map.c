@@ -6,7 +6,7 @@
 /*   By: rstarfir <rstarfir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/24 18:03:44 by rstarfir          #+#    #+#             */
-/*   Updated: 2019/10/25 20:54:13 by rstarfir         ###   ########.fr       */
+/*   Updated: 2019/10/26 19:11:51 by rstarfir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ char		**ft_mapsize(t_tetra *tmp, int size)
 		map[x] = ft_memset(*map, '.', size);
 		x++;
 	}
-	fillit(map, tmp, size);
+	fillit(map, tmp, size, 0);
 	display_map(map, size);
 	return (map);
 }
