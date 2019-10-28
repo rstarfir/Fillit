@@ -6,7 +6,7 @@
 /*   By: rstarfir <rstarfir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/14 18:59:35 by aagrivan          #+#    #+#             */
-/*   Updated: 2019/10/23 20:45:26 by rstarfir         ###   ########.fr       */
+/*   Updated: 2019/10/24 19:53:59 by rstarfir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,12 +63,13 @@ int			ft_check_full(char *str)
 	return (-1);
 }
 
-int			ft_valid(const int fd)
+t_tetra		*ft_valid(const int fd)
 {
 	size_t	r;
 	int		count;
 	char	buffer[BUF_SSIZE];
 	char	c;
+	t_tetra	*tmp;
 
 	c = 'A';
 	count = 0;
@@ -79,14 +80,15 @@ int			ft_valid(const int fd)
 		buffer[r] = '\0';
 		if (ft_check_full(buffer) == 1 && ft_check_form(buffer) == 1)
 		{
-			ft_tetra(buffer, c++);
-			printf("buffer = %s", buffer);
+			if (c == 'A')
+				tmp = ft_tetra(buffer, c);
+			else
+				ft_addtetr(tmp, buffer, c);
 		}
-		else
-			ft_putendl("All good check_form.");
+		c++;
 		count++;
 		if (count > 26)
 			ft_error();
 	}
-	return (0);
+	return (tmp);
 }

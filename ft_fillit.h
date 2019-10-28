@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_fillit.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rstarfir <rstarfir@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aagrivan <aagrivan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/14 13:09:15 by aagrivan          #+#    #+#             */
-/*   Updated: 2019/10/23 18:14:10 by rstarfir         ###   ########.fr       */
+/*   Updated: 2019/10/28 16:37:06 by aagrivan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,10 +27,20 @@ typedef struct				s_tetra
 	struct s_tetra			*prev;
 }							t_tetra;
 
-int		ft_valid(const int fd);
+t_tetra	*ft_valid(const int fd);
 int		ft_check_full(char *str);
 int		ft_check_form(char *str);
 void	ft_error(void);
 t_tetra	*ft_tetra(char *buffer, char c);
+t_tetra	*ft_addtetr(t_tetra *tmp, char *buffer, char c);
+void	min_xy(int *src);
+char	**ft_mapsize(t_tetra *tmp, int size);
+int		ft_min_map(t_tetra *tmp);
+void	display_map(char **map, int size);
+int 	fillit(char **map, t_tetra *tmp, int size, int min_xy);
+int		overlay(char **map, t_tetra *tmp, int x, int y);
+int		overmap(int size, int x, int y);
+void	ft_shift(t_tetra *tmp, int x, int y);
+
 
 #endif
