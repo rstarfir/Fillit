@@ -6,7 +6,7 @@
 /*   By: rstarfir <rstarfir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/14 18:59:35 by aagrivan          #+#    #+#             */
-/*   Updated: 2019/10/24 19:53:59 by rstarfir         ###   ########.fr       */
+/*   Updated: 2019/10/30 20:40:56 by rstarfir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,8 +73,7 @@ t_tetra		*ft_valid(const int fd)
 
 	c = 'A';
 	count = 0;
-	if (read(fd, buffer, 0) < 0)
-		ft_error();
+	(read(fd, buffer, 0) < 0) ? ft_error() : -1;	/*fix this*/
 	while ((r = read(fd, buffer, BUF_SSIZE)) > 19)
 	{
 		buffer[r] = '\0';

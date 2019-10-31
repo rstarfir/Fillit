@@ -6,7 +6,7 @@
 /*   By: rstarfir <rstarfir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/23 14:10:20 by rstarfir          #+#    #+#             */
-/*   Updated: 2019/10/26 17:34:51 by rstarfir         ###   ########.fr       */
+/*   Updated: 2019/10/30 20:41:57 by rstarfir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,6 @@ void			min_xy(int *src)
 		min_y = (src[i + 1] < min_y) ? src[i + 1] : min_y;
 		i += 2;
 	}
-	//printf("min_x = %i, min_y = %i", min_x, min_y);
 	i = 0;
 	while (i < 8)
 	{
@@ -41,11 +40,9 @@ void			ft_params(char *buffer, int *src)
 {
 	int			i;
 	int			j;
-//	int 		count; // del
 
 	i = 0;
 	j = 0;
-//	count = 0;
 	while (i++ < 21)
 		if (buffer[i] == '#')
 		{
@@ -54,13 +51,6 @@ void			ft_params(char *buffer, int *src)
 			j += 2;
 		}
 	min_xy(src);
-	/*i = 0;
-	while (i < 8)
-	{
-		printf("src[%i] = %d\n", count, src[i]);
-		i++;
-		count++;
-	}*/
 }
 
 t_tetra			*ft_tetra(char *buffer, char c)

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_fillit.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aagrivan <aagrivan@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rstarfir <rstarfir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/14 13:09:15 by aagrivan          #+#    #+#             */
-/*   Updated: 2019/10/28 16:37:06 by aagrivan         ###   ########.fr       */
+/*   Updated: 2019/10/31 21:25:55 by rstarfir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,10 +37,10 @@ void	min_xy(int *src);
 char	**ft_mapsize(t_tetra *tmp, int size);
 int		ft_min_map(t_tetra *tmp);
 void	display_map(char **map, int size);
-int 	fillit(char **map, t_tetra *tmp, int size, int min_xy);
+int 	fillit(char **map, t_tetra *tmp, int size);
 int		overlay(char **map, t_tetra *tmp, int x, int y);
-int		overmap(int size, int x, int y);
-void	ft_shift(t_tetra *tmp, int x, int y);
-
+int		overmap(t_tetra *tmp, int size, int x, int y);
+int		ft_shift(char **map, t_tetra *tmp, int x, int y);
+void	set_dot(char **map, t_tetra *tmp, int x, int y);
 
 #endif

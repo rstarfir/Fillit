@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_map.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aagrivan <aagrivan@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rstarfir <rstarfir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/24 18:03:44 by rstarfir          #+#    #+#             */
-/*   Updated: 2019/10/28 18:58:21 by aagrivan         ###   ########.fr       */
+/*   Updated: 2019/10/31 21:20:40 by rstarfir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ char		**ft_mapsize(t_tetra *tmp, int size)
 		map[x] = ft_memset(map[x], '.', size);
 		x++;
 	}
-	fillit(map, tmp, size, 0);
+	fillit(map, tmp, size);
 	display_map(map, size);
 	return (map);
 }
@@ -62,8 +62,8 @@ void		display_map(char **map, int size)
 	i = 0;
 	while (i < size)
 	{
-		//ft_putendl(*map);
 		ft_putendl(map[i]);
 		i++;
 	}
 }
+

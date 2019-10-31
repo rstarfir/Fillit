@@ -3,103 +3,127 @@
 /*                                                        :::      ::::::::   */
 /*   ft_fillit.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aagrivan <aagrivan@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rstarfir <rstarfir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/25 16:52:27 by rstarfir          #+#    #+#             */
-/*   Updated: 2019/10/28 20:43:50 by aagrivan         ###   ########.fr       */
+/*   Updated: 2019/10/31 21:25:45 by rstarfir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_fillit.h"
 
-int			fillit(char **map, t_tetra *tmp, int size, int min_xy)
+int			fillit(char **map, t_tetra *tmp, int size)
 {
 	int		i;
 	int		x;
 	int		y;
-	int		j;
 
-	y = min_xy / size;
-	x = min_xy % size;
 	i = -1;
-	j = 0;
-	printf("error1\n");
+	y = 0;
 	if (tmp == NULL)
 		return (1);
-	printf("error2\n");
-/*	if (map[y][x] != '.')
+	while (y < size)
 	{
-		printf("error3\n");
-		fillit(map, tmp, size, min_xy + 1);
-//		return (fillit(map, tmp, size, min_xy + 1));
-	}*/
-	while (i++ <= size)
-	{
-		printf("error5\n");
-		if (overlay(map, tmp, x, y) != 0)
+		x = 0;
+		while (x < size)
 		{
-			printf("error6\n");
-			if (overmap(size, x, y) == 1)
+			printf("enterwhile3\n");
+			if (overmap(tmp, size, x, y) == 1)
 			{
+				printf("enterif5\n");
 				free(map);
 				ft_mapsize(tmp, size + 1);
 			}
-			ft_shift(tmp, x, y);
-			fillit(map, tmp, size, min_xy + 1);
+			else
+			{
+				if (overlay(map, tmp, x, y) == 8)
+				{
+					if (ft_shift(map, tmp, x, y))
+					{
+						printf("enterif4\n");
+						if (fillit(map, tmp->next, size))
+							return (1);
+						else
+							set_dot(map, tmp, x, y);
+					}
+				}
+			}
+			printf("error10\n");
+			x++;
 		}
-		printf("error10\n");
-		map[tmp->tmino[j + 1]][tmp->tmino[j]] = tmp->alpha;
-		tmp = tmp->next;
-/*	if (fillit(map, tmp, size, min_xy + 1))
-		return (1);
-		else
-		map[y][x] = '.';*/
+		y++;
 	}
-	return (1);
+	return (0);
 }
 
 int			overlay(char **map, t_tetra *tmp, int x, int y)
 {
 	int		i;
+	int		xx;
+	int		yy;
 
 	i = 0;
-	while (i < 8)
+	xx = tmp->tmino[i] + x;
+	yy = tmp->tmino[i + 1] + y;
+	while (i <= 6 && map[yy][xx] == '.')
 	{
-		printf("error8\n");
-		printf("x = %i y = %i\n", x, y);
-
-				printf("x = %d\n", x);		printf("y = %d\n", y);
-		if (map[y][x] != '.')
-			{
-				printf("error9\n");
-				return (1);
-			}
 		i += 2;
-				x = tmp->tmino[i];
-		y = tmp->tmino[i + 1];
+		printf("overlay\n");
+		xx = tmp->tmino[i] + x;
+		yy = tmp->tmino[i + 1] + y;
+		printf("x = %d\n", x);
+		printf("y = %d\n", y);
 	}
-	return (0);
+	return (i != 8);
 }
 
-int			overmap(int size, int x, int y)
+int			overmap(t_tetra *tmp, int size, int x, int y)
 {
-//	printf("error\n");
-	if (x > (size - 1) || y > (size - 1))
-		return (1);
-	else
+	if (tmp->tmino[0] + x < size &&
+	tmp->tmino[1] + y < size &&
+	tmp->tmino[2] + x < size &&
+	tmp->tmino[3] + y < size &&
+	tmp->tmino[4] + x < size &&
+	tmp->tmino[5] + y < size &&
+	tmp->tmino[6] + x < size &&
+	tmp->tmino[7] + y < size)
 		return (0);
-//	return (x > (size - 1) || (y > (size - 1))) ? 1 : 0;
+	else
+		return (1);
 }
 
-void		ft_shift(t_tetra *tmp, int x, int y)
+int			ft_shift(char **map, t_tetra *tmp, int x, int y)
 {
 	int		i;
+	int		crd_x;
+	int		crd_y;
 
 	i = 0;
+	printf("entershift\n");
 	while (i < 8)
 	{
-		tmp->tmino[i] = tmp->tmino[i] + x;
-		tmp->tmino[i + 1] = tmp->tmino[i + 1] + y;
+		crd_x = tmp->tmino[i] + x;
+		crd_y = tmp->tmino[i + 1] + y;
+		map[crd_y][crd_x] = tmp->alpha;
+		i += 2;
+		printf("shiftwhileloop\n");
+	}
+	return (1);
+}
+
+void		set_dot(char **map, t_tetra *tmp, int x, int y)
+{
+	int		i;
+	int		crd_x;
+	int		crd_y;
+
+	i = 0;
+	printf("entershift\n");
+	while (i < 8)
+	{
+		crd_x = tmp->tmino[i] + x;
+		crd_y = tmp->tmino[i + 1] + y;
+		map[crd_y][crd_x] = '.';
 		i += 2;
 	}
 }
