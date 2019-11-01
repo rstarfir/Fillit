@@ -6,7 +6,7 @@
 /*   By: aagrivan <aagrivan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/24 18:03:44 by rstarfir          #+#    #+#             */
-/*   Updated: 2019/10/28 18:58:21 by aagrivan         ###   ########.fr       */
+/*   Updated: 2019/11/01 14:25:17 by aagrivan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,6 @@ void		display_map(char **map, int size)
 	i = 0;
 	while (i < size)
 	{
-		//ft_putendl(*map);
 		ft_putendl(map[i]);
 		i++;
 	}
