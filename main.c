@@ -3,26 +3,21 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aagrivan <aagrivan@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rstarfir <rstarfir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/14 13:07:48 by aagrivan          #+#    #+#             */
-/*   Updated: 2019/11/01 17:35:20 by aagrivan         ###   ########.fr       */
+/*   Updated: 2019/11/03 21:53:26 by rstarfir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_fillit.h"
-
-void		ft_error(void)
-{
-	ft_putendl("error");
-	exit(1);
-}
 
 int         main(int ac, char **av)
 {
 	int		fd;
 	t_tetra	*tmp;
 	int		size;
+	char	**map;
 
 	fd = 0;
 	size = 0;
@@ -32,11 +27,25 @@ int         main(int ac, char **av)
 	{
 		if ((fd = open(av[1], O_RDONLY)) < 0)
 			ft_error();
-		tmp = ft_valid(fd);
+		tmp = ft_valid(fd, tmp);
 		close(fd);
 		size = ft_min_map(tmp);
-		ft_mapsize(tmp, size);
+		map = ft_mapsize(size);
+		while (!fillit(map, tmp, size))
+		{
+			free_map(map, size);
+			size++;
+			map = ft_mapsize(size);
+		}
+		display_map(map, size);
+		free_map(map, size);
+		ft_del_elem(tmp);
 	}
 	return (0);
 }
-	
+
+void		ft_error(void)
+{
+	ft_putendl("error");
+	exit(1);
+}

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_fillit22.c                                      :+:      :+:    :+:   */
+/*   ft_fillit33.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rstarfir <rstarfir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/25 16:52:27 by rstarfir          #+#    #+#             */
-/*   Updated: 2019/11/02 18:16:06 by rstarfir         ###   ########.fr       */
+/*   Updated: 2019/11/03 16:21:36 by rstarfir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,26 +27,24 @@ int			fillit(char **map, t_tetra *tmp, int size)
 		x = 0;
 		while (x < size)
 		{
-			printf("enterwhile3\n");
-			if (overmap(tmp, size, x, y) == 1)
+			if (overlay(map, tmp, x, y, size) == 1)
 			{
-				printf("enterif5\n");
-				free(map);
-				ft_mapsize(tmp, size + 1);
+				ft_shift(map, tmp, x, y);
+				if (overmap(tmp, size, x, y) == 1)
+				{
+					printf("enterif5\n");
+					free(map);
+					ft_mapsize(tmp, size + 1);
+				}
 			}
+			printf("enterwhile3\n");
 			else
 			{
-				if (overlay(map, tmp, x, y) == 8)
-				{
-					if (ft_shift(map, tmp, x, y))
-					{
-						printf("enterif4\n");
-						if (fillit(map, tmp->next, size))
-							return (1);
-						else
-							set_dot(map, tmp, x, y);
-					}
-				}
+				printf("enterif4\n");
+				if (fillit(map, tmp->next, size))
+						return (1);
+				else
+					set_dot(map, tmp, x, y);
 			}
 			printf("error10\n");
 			x++;
@@ -56,42 +54,41 @@ int			fillit(char **map, t_tetra *tmp, int size)
 	return (0);
 }
 
-int			overlay(char **map, t_tetra *tmp, int x, int y)
+int			overlay(char **map, t_tetra *tmp, int x, int y, int size)
 {
 	int		i;
-	int		xx;
-	int		yy;
+	int		k;
+	int		l;
 
+	k = 0;
 	i = 0;
-	xx = 0;
-	yy = 0;
-	xx = tmp->tmino[i] + x;
-	yy = tmp->tmino[i + 1] + y;
-	while (i <= 6 && map[xx][yy] == '.')
+	while (k < size)
 	{
-		i += 2;
-		printf("overlay\n");
-		xx = tmp->tmino[i] + x;
-		yy = tmp->tmino[i + 1] + y;
-		printf("x = %d\n", x);
-		printf("y = %d\n", y);
+		l = 0;
+		while (l < size)
+		{
+			if (map[tmp->tmino[i + 1] + y][tmp->tmino[i] + x] != '.'
+			|| !(map[tmp->tmino[i + 1] + y][tmp->tmino[i] + x]))
+				return (1);
+			l++;
+		}
+		k++;
 	}
-	return (i != 8);
 }
 
 int			overmap(t_tetra *tmp, int size, int x, int y)
 {
-	if (tmp->tmino[0] + x < size &&
-	tmp->tmino[1] + y < size &&
-	tmp->tmino[2] + x < size &&
-	tmp->tmino[3] + y < size &&
-	tmp->tmino[4] + x < size &&
-	tmp->tmino[5] + y < size &&
-	tmp->tmino[6] + x < size &&
-	tmp->tmino[7] + y < size)
-		return (0);
-	else
-		return (1);
+	int		i;
+
+	i = 0;
+	while (i < 8)
+	{
+		if (tmp->tmino[i] + x > (size - 1) ||
+		tmp->tmino[i + 1] + y > (size - 1))
+			return (1);
+		i += 2;
+	}
+	return (0);
 }
 
 int			ft_shift(char **map, t_tetra *tmp, int x, int y)

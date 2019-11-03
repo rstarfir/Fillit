@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_map.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aagrivan <aagrivan@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rstarfir <rstarfir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/24 18:03:44 by rstarfir          #+#    #+#             */
-/*   Updated: 2019/11/01 20:45:15 by aagrivan         ###   ########.fr       */
+/*   Updated: 2019/11/03 22:21:10 by rstarfir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,20 +37,20 @@ int			ft_min_map(t_tetra *tmp)
 	return (size);
 }
 
-char		**ft_mapsize(t_tetra *tmp, int size)
+char		**ft_mapsize(int size)
 {
 	int		x;
 	char	**map;
 
 	x = 0;
-	map = (char **)malloc(sizeof(char*) * size + 1);//guard from leaks ft_memalloc???
+	map = (char **)malloc(sizeof(char*) * size);//guard from leaks ft_memalloc???
 	while (x < size)
 	{
 		map[x] = (char *)malloc(sizeof(char) * size + 1);//guard from leaks ft_memalloc???
 		map[x] = ft_memset(map[x], '.', size);
+		map[x][size + 1] = '\0';
 		x++;
 	}
-	fillit(map, tmp, size);
 	return (map);
 }
 
@@ -67,8 +67,7 @@ void		free_map(char **map, int size)
 	ft_memdel((void **)&map);
 }
 
-//display_map(map, size);
-/*void		display_map(char **map, int size)
+void		display_map(char **map, int size)
 {
 	int		i;
 
@@ -78,4 +77,4 @@ void		free_map(char **map, int size)
 		ft_putendl(map[i]);
 		i++;
 	}
-}*/
+}

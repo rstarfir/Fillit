@@ -3,94 +3,102 @@
 /*                                                        :::      ::::::::   */
 /*   ft_fillit.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aagrivan <aagrivan@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rstarfir <rstarfir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/01 14:47:55 by aagrivan          #+#    #+#             */
-/*   Updated: 2019/11/01 20:48:09 by aagrivan         ###   ########.fr       */
+/*   Updated: 2019/11/03 18:10:37 by rstarfir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_fillit.h"
 
-int			fillit(char **map, t_tetra *tmp, int size) //char
+int			fillit(char **map, t_tetra *tmp, int size)
 {
-	t_coord	*xy;
+	if (!tmp)
+		return (1);
+	tmp->tmino[8] = 0;
+	tmp->tmino[9] = 0;
 
-	xy->x_set = 0;
-	xy->y_set = 0;
-	while (xy->y_set < size)
+	while (!overmap(tmp, size, 'y'))
 	{
-		xy->x_set = 0;
-		while (xy->x_set < size)
+		while (!overmap(tmp, size, 'x'))
 		{
-			if (overlay(map, tmp, xy, size) == 1)
+			if (!overlay(map, tmp))
 			{
-				printf("overlay");
-				//ft_shift();
+				fill_the_map(map, tmp, tmp->alpha);
+				if (fillit(map, tmp->next, size))
+					return (1);
+				else
+					fill_the_map(map, tmp, '.');
 			}
-			xy->x_set++;
+			(tmp->tmino[8])++;
 		}
-		xy->y_set++;
+		tmp->tmino[8] = 0;
+		(tmp->tmino[9])++;
 	}
 	return (0);
 }
 
-int			overmap(t_tetra *tmp, t_coord *xy, int size)
+int			overmap(t_tetra *tmp, int size, char xy)
 {
 	int		i;
 
 	i = 0;
-	while (i < 8)
+	if (xy == 'x')
 	{
-		if (tmp->tmino[i] + xy->x_set > (size - 1) ||
-		tmp->tmino[i + 1] + xy->y_set > (size - 1))
+		while (i <= 6)
+		{
+			if (tmp->tmino[i] + tmp->tmino[8] > size - 1)
+				return (1);
+			i += 2;
+		}
+	}
+	else
+	{
+		while (i <= 6)
+		{
+			if (tmp->tmino[i + 1] + tmp->tmino[9] > size - 1)
+				return (1);
+			i += 2;
+		}
+	}
+	return (0);
+}
+
+int			overlay(char **map, t_tetra *tmp)
+{
+	int		i;
+	int		x;
+	int		y;
+
+	i = 0;
+	x = 0;
+	y = 0;
+	while (i <= 6)
+	{
+		x = tmp->tmino[i] + tmp->tmino[8];
+		y = tmp->tmino[i + 1] + tmp->tmino[9];
+		if (map[y][x] != '.')
 			return (1);
 		i += 2;
 	}
 	return (0);
 }
 
-int			overlay(char **map, t_tetra *tmp, t_coord *xy, int size)
+void		fill_the_map(char **map, t_tetra *tmp, char c)
 {
-	int i;
-	int x;
-	int y;
-
-	i = 0;
-	x = 0;
-	y = 0;
-	x = tmp->tmino[i] + xy->x_set;
-	y = tmp->tmino[i + 1] + xy->y_set;
-	while (i <= 6 && map[x][y] == '.')
-	{
-		i += 2;
-		x = tmp->tmino[i] + xy->x_set;
-		y = tmp->tmino[i + 1] + xy->y_set;
-	}
-	return (i != 8);
-	/*int		i;
+	int		i;
 	int		x;
 	int		y;
 
+	x = 0;
 	y = 0;
 	i = 0;
-	while (y < size)
+	while (i <= 6)
 	{
-		x = 0;
-		while (x < size)
-		{
-			if (map[tmp->tmino[i + 1] + xy->y_set][tmp->tmino[i] + xy->x_set] != '.'
-			|| !(map[tmp->tmino[i + 1] + xy->y_set][tmp->tmino[i] + xy->x_set]))
-				return (1);
-			x++;
-		}
-		y++;
-	}*/
-	return (0);
+		x = tmp->tmino[i] + tmp->tmino[8];
+		y = tmp->tmino[i + 1] + tmp->tmino[9];
+		map[y][x] = c;
+		i += 2;
+	}
 }
-
-/*if (overmap(tmp, xy, size) == 1)
-	{
-		free_map(map, size);
-		ft_mapsize(tmp, size + 1);
-	}*/
