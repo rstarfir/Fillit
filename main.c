@@ -6,7 +6,7 @@
 /*   By: rstarfir <rstarfir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/14 13:07:48 by aagrivan          #+#    #+#             */
-/*   Updated: 2019/11/03 21:53:26 by rstarfir         ###   ########.fr       */
+/*   Updated: 2019/11/04 17:40:55 by rstarfir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 int         main(int ac, char **av)
 {
 	int		fd;
-	t_tetra	*tmp;
+	t_tetra	*tmp = NULL;
 	int		size;
 	char	**map;
 
