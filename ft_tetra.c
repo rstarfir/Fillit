@@ -6,7 +6,7 @@
 /*   By: rstarfir <rstarfir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/23 14:10:20 by rstarfir          #+#    #+#             */
-/*   Updated: 2019/11/05 13:19:24 by rstarfir         ###   ########.fr       */
+/*   Updated: 2019/11/06 21:35:58 by rstarfir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,13 +41,13 @@ void			ft_params(char *buffer, int *src)
 	int			i;
 	int			j;
 
-	i = 0;
+	i = -1;
 	j = 0;
 	while (i++ < 21)
 		if (buffer[i] == '#')
 		{
-			src[j] = i % 5; // x
-			src[j + 1] = i / 5; // y
+			src[j] = i % 5;
+			src[j + 1] = i / 5;
 			j += 2;
 		}
 	min_xy(src);
@@ -89,26 +89,15 @@ t_tetra			*ft_addtetr(t_tetra *tmp, char *buffer, char c)
 	return (tmp1);
 }
 
-t_tetra		*ft_del_elem(t_tetra *tmp)
+void			ft_del_elem(t_tetra *tmp)
 {
-	t_tetra	*tmp1;
-	t_tetra	*tmp2;
+	t_tetra		*tmp1;
 
 	tmp1 = tmp;
-	while (tmp1->next)
+	while (tmp)
 	{
-		tmp2 = tmp1;
-		tmp1 = tmp1->next;
+		tmp1 = tmp;
+		tmp = tmp->next;
+		free(tmp1);
 	}
-	if (tmp2 == NULL)
-	{
-		free(tmp);
-		tmp = NULL;
-	}
-	else
-	{
-		free(tmp1->next);
-		tmp2->next = NULL;
-	}
-	return (tmp);
 }

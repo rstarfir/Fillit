@@ -6,7 +6,7 @@
 #    By: rstarfir <rstarfir@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/10/23 14:37:43 by rstarfir          #+#    #+#              #
-#    Updated: 2019/11/05 21:04:17 by rstarfir         ###   ########.fr        #
+#    Updated: 2019/11/06 21:20:00 by rstarfir         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -49,4 +49,5 @@ fclean: clean
 	make -C $(LIBFT) fclean
 
 re: fclean all
-  
+
+.PHONY: all clean fclean re

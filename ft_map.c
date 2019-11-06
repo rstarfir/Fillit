@@ -6,7 +6,7 @@
 /*   By: rstarfir <rstarfir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/24 18:03:44 by rstarfir          #+#    #+#             */
-/*   Updated: 2019/11/03 22:21:10 by rstarfir         ###   ########.fr       */
+/*   Updated: 2019/11/06 20:58:21 by rstarfir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,10 +43,12 @@ char		**ft_mapsize(int size)
 	char	**map;
 
 	x = 0;
-	map = (char **)malloc(sizeof(char*) * size);//guard from leaks ft_memalloc???
+	if (size == 0)
+		ft_error();
+	map = (char **)malloc(sizeof(char*) * size);
 	while (x < size)
 	{
-		map[x] = (char *)malloc(sizeof(char) * size + 1);//guard from leaks ft_memalloc???
+		map[x] = (char *)malloc(sizeof(char) * size + 1);
 		map[x] = ft_memset(map[x], '.', size);
 		map[x][size + 1] = '\0';
 		x++;

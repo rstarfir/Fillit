@@ -6,7 +6,7 @@
 /*   By: rstarfir <rstarfir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/01 14:47:55 by aagrivan          #+#    #+#             */
-/*   Updated: 2019/11/04 20:35:28 by rstarfir         ###   ########.fr       */
+/*   Updated: 2019/11/06 20:55:28 by rstarfir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@ int			fillit(char **map, t_tetra *tmp, int size)
 		return (1);
 	tmp->tmino[8] = 0;
 	tmp->tmino[9] = 0;
-
 	while (!overmap(tmp, size, 'y'))
 	{
 		while (!overmap(tmp, size, 'x'))

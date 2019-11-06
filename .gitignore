@@ -1,0 +1,6 @@
+**/*.o
+**/*.DS_Store
+**/*.fillit.dSYM
+**/*.vscode
+**/test*
+**/*valid_sample*

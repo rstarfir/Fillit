@@ -6,20 +6,21 @@
 /*   By: rstarfir <rstarfir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/14 13:07:48 by aagrivan          #+#    #+#             */
-/*   Updated: 2019/11/04 17:40:55 by rstarfir         ###   ########.fr       */
+/*   Updated: 2019/11/06 21:36:46 by rstarfir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_fillit.h"
 
-int         main(int ac, char **av)
+int			main(int ac, char **av)
 {
 	int		fd;
-	t_tetra	*tmp = NULL;
+	t_tetra	*tmp;
 	int		size;
 	char	**map;
 
 	fd = 0;
+	tmp = NULL;
 	size = 0;
 	if (ac != 2)
 		ft_putendl("usage: fillit <name file>");
