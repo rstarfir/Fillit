@@ -6,7 +6,7 @@
 /*   By: rstarfir <rstarfir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/23 14:10:20 by rstarfir          #+#    #+#             */
-/*   Updated: 2019/11/05 00:25:39 by rstarfir         ###   ########.fr       */
+/*   Updated: 2019/11/05 13:19:24 by rstarfir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,17 +72,20 @@ t_tetra			*ft_tetra(char *buffer, char c)
 t_tetra			*ft_addtetr(t_tetra *tmp, char *buffer, char c)
 {
 	t_tetra		*tmp1;
-	t_tetra		*p;
+	t_tetra		*curr;
 
-	while (tmp1->next != tmp)
-		tmp1 = tmp1->next;
+	curr = tmp->next;
+	while (curr)
+	{
+		tmp = curr;
+		curr = tmp->next;
+	}
 	if (!(tmp1 = (t_tetra *)malloc(sizeof(t_tetra))))
 		ft_error();
-	p = tmp->next;
 	tmp->next = tmp1;
 	ft_params(buffer, tmp1->tmino);
 	tmp1->alpha = c;
-	tmp1->next = p;
+	tmp1->next = NULL;
 	return (tmp1);
 }
 

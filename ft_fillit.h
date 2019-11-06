@@ -6,7 +6,7 @@
 /*   By: rstarfir <rstarfir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/14 13:09:15 by aagrivan          #+#    #+#             */
-/*   Updated: 2019/11/03 18:33:51 by rstarfir         ###   ########.fr       */
+/*   Updated: 2019/11/05 19:58:45 by rstarfir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 # define FT_FILLIT_H
 
 # include <fcntl.h>
-# include "libft/libft.h"
+# include "libft.h"
 # include <stdio.h>
 
 # define BUF_SSIZE 21
@@ -27,7 +27,7 @@ typedef struct				s_tetra
 }							t_tetra;
 
 t_tetra	*ft_valid(const int fd, t_tetra *tmp);
-int		ft_check_full(char *str);
+int		ft_check_full(char *str, int r);
 int		ft_check_form(char *str);
 void	ft_error(void);
 t_tetra *ft_tetra(char *buffer, char c);

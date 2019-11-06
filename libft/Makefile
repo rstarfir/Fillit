@@ -6,7 +6,7 @@
 #    By: rstarfir <rstarfir@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/09/03 22:22:01 by rstarfir          #+#    #+#              #
-#    Updated: 2019/09/21 15:05:43 by rstarfir         ###   ########.fr        #
+#    Updated: 2019/11/05 19:22:56 by rstarfir         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -77,9 +77,12 @@ SRCS = ft_memset.c \
 		ft_lstiter.c \
 		
 
+HEADERS = includes
+
 OBJECTS = $(SRCS:%.c=%.o)
 
-HEADERS = ./libft.h
+vpath %.c srcs
+vpath %.h includes
 
 GCCF = -Wall -Wextra -Werror
 
