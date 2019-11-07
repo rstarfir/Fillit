@@ -6,7 +6,7 @@
 /*   By: rstarfir <rstarfir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/14 13:09:15 by aagrivan          #+#    #+#             */
-/*   Updated: 2019/11/06 21:37:02 by rstarfir         ###   ########.fr       */
+/*   Updated: 2019/11/07 14:08:52 by rstarfir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 
 # include <fcntl.h>
 # include "libft.h"
-# include <stdio.h>
 
 # define BUF_SSIZE 21
 
@@ -30,7 +29,6 @@ t_tetra						*ft_valid(const int fd, t_tetra *tmp);
 void						ft_error(void);
 t_tetra						*ft_tetra(char *buffer, char c);
 t_tetra						*ft_addtetr(t_tetra *tmp, char *buffer, char c);
-void						min_xy(int *src);
 char						**ft_mapsize(int size);
 void						free_map(char **map, int size);
 int							ft_min_map(t_tetra *tmp);
@@ -41,5 +39,7 @@ int							overmap(t_tetra *tmp, int size, char xy);
 void						fill_the_map(char **map, t_tetra *tmp, char c);
 void						ft_del_elem(t_tetra *tmp);
 void						check_last_elem(size_t r2);
+t_tetra						*create_list(char *buffer, t_tetra *tmp, char c);
+int							solve_tetr(char **map, t_tetra *tmp, int size);
 
 #endif

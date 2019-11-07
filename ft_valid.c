@@ -6,13 +6,13 @@
 /*   By: rstarfir <rstarfir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/14 18:59:35 by aagrivan          #+#    #+#             */
-/*   Updated: 2019/11/06 21:37:21 by rstarfir         ###   ########.fr       */
+/*   Updated: 2019/11/07 14:07:52 by rstarfir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_fillit.h"
 
-int			ft_check_form(char *str)
+static int	ft_check_form(char *str)
 {
 	int		i;
 	int		link;
@@ -37,30 +37,32 @@ int			ft_check_form(char *str)
 	return (link == 6 || link == 8) ? 1 : -1;
 }
 
-int			ft_check_full(char *str)
+static int	ft_check_full(char *str)
 {
 	int		i;
 	int		count;
+	int		j;
 
 	count = 0;
 	i = 0;
+	j = 0;
 	while (str[i])
 	{
 		if (str[i] == '.' || str[i] == '#' || str[i] == '\n')
 		{
-			if ((str[i] == '#' || str[i] == '.') && (i < 19))
-				count++;
+			((str[i] == '#' || str[i] == '.') && (i < 19)) ? count++ : count;
+			(str[i] == '#' && (i < 19)) ? j++ : j;
 			if ((i + 1) % 5 == 0 && str[i] == '\n')
 				count++;
 			else if ((i + 1) % 5 == 0 && str[i] != '\n')
 				return (0);
-			if (str[i + 1] == '\0' && (i + 1) % 21 == 0 && str[i] == '\n')
-				count++;
+			((i + 1) % 21 == 0 && str[i] == '\n') ? count++ : count;
 		}
 		else
 			ft_error();
 		i++;
 	}
+	(j != 4) ? ft_error() : j;
 	return (count == 20 || count == 21) ? 1 : -1;
 }
 
@@ -79,18 +81,7 @@ t_tetra		*ft_valid(const int fd, t_tetra *tmp)
 	{
 		buffer[r] = '\0';
 		r2 = r;
-		if (ft_check_full(buffer) == 1 && ft_check_form(buffer) == 1)
-		{
-			if (c == 'A')
-				tmp = ft_tetra(buffer, c);
-			else
-				ft_addtetr(tmp, buffer, c);
-		}
-		else
-		{
-			ft_error();
-			ft_del_elem(tmp);
-		}
+		tmp = create_list(buffer, tmp, c);
 		c++;
 		count++;
 		if (count > 26)
@@ -104,4 +95,21 @@ void		check_last_elem(size_t r2)
 {
 	if (r2 != 20)
 		ft_error();
+}
+
+t_tetra		*create_list(char *buffer, t_tetra *tmp, char c)
+{
+	if (ft_check_full(buffer) == 1 && ft_check_form(buffer) == 1)
+	{
+		if (c == 'A')
+			tmp = ft_tetra(buffer, c);
+		else
+			ft_addtetr(tmp, buffer, c);
+	}
+	else
+	{
+		ft_error();
+		ft_del_elem(tmp);
+	}
+	return (tmp);
 }

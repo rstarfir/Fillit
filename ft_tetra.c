@@ -6,13 +6,13 @@
 /*   By: rstarfir <rstarfir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/23 14:10:20 by rstarfir          #+#    #+#             */
-/*   Updated: 2019/11/06 21:35:58 by rstarfir         ###   ########.fr       */
+/*   Updated: 2019/11/07 13:12:03 by rstarfir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_fillit.h"
 
-void			min_xy(int *src)
+static void		min_xy(int *src)
 {
 	int			min_x;
 	int			min_y;
@@ -36,7 +36,7 @@ void			min_xy(int *src)
 	}
 }
 
-void			ft_params(char *buffer, int *src)
+static void		ft_params(char *buffer, int *src)
 {
 	int			i;
 	int			j;
